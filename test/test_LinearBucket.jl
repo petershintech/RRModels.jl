@@ -1,5 +1,11 @@
 
 @testset "LinearBucket.jl" begin
+    @testset "Constructors" begin
+		model = LinearBucket()
+		model2 = LinearBucket(model)
+		@test model == model2
+	end
+
     @testset "Check param or state values when creating new instance" begin
         @test_throws DomainError LinearBucket(-0.1, 0.0)
         @test_throws DomainError LinearBucket(1.1, 0.0)

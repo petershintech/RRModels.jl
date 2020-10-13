@@ -14,8 +14,16 @@ function LinearBucket()
     LinearBucket(0.1, 0.0)
 end
 
+function LinearBucket(model::LinearBucket)
+    LinearBucket(model.K, model.S)
+end
+
 function LinearBucket(d::Dict)
     LinearBucket(d[:K], d[:S])
+end
+
+function ==(a::LinearBucket, b::LinearBucket)
+    return a.K == b.K && a.S == b.S
 end
 
 function Base.setproperty!(obj::LinearBucket, field::Symbol, value)

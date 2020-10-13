@@ -1,7 +1,8 @@
 module RRModels
 
 import Base.setproperty!
-export AbstractRRModel, LinearBucket, simulate
+import Base.==
+export AbstractRRModel, LinearBucket, simulate, stash
 
 include("AbstractRRModel.jl")
 include("LinearBucket.jl")
