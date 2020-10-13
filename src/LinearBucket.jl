@@ -26,6 +26,13 @@ function ==(a::LinearBucket, b::LinearBucket)
     return a.K == b.K && a.S == b.S
 end
 
+function show(io::IO, model::LinearBucket)
+    println("Linear Bucket Model:")
+    println(io, "K = $(model.K)")
+    println(io, "S = $(model.S)")
+    return
+end
+
 function Base.setproperty!(obj::LinearBucket, field::Symbol, value)
     if field == :K
         0.0 <= value <= 1.0 || throw(DomainError(value, "K parameter should have a value between 0 and 1"))

@@ -30,4 +30,8 @@
         @test model.S == model2.S
     end
 
+    @testset "Print a model" begin
+    	model = LinearBucket()
+    	println(model)
+	end
 end
