@@ -12,4 +12,16 @@
         @test_throws DomainError model.K = 1.1
         @test_throws DomainError model.S = -0.5
     end
+
+    @testset "Stash and recover a model for hot start" begin
+        model = LinearBucket(0.2, 0.5)
+        d = stash(model)
+        @test model.K == d[:K]
+        @test model.S == d[:S]
+
+        model2 = LinearBucket(d)
+        @test model.K == model2.K
+        @test model.S == model2.S
+    end
+
 end

@@ -14,6 +14,10 @@ function LinearBucket()
     LinearBucket(0.1, 0.0)
 end
 
+function LinearBucket(d::Dict)
+    LinearBucket(d[:K], d[:S])
+end
+
 function Base.setproperty!(obj::LinearBucket, field::Symbol, value)
     if field == :K
         0.0 <= value <= 1.0 || throw(DomainError(value, "K parameter should have a value between 0 and 1"))
@@ -47,4 +51,8 @@ function simulate(model::LinearBucket, P::Float64, PET::Float64)
         model.S -= Q
     end
     return Q, AET
+end
+
+function stash(model::LinearBucket)::Dict
+    return Dict(:K=>model.K, :S=>model.S)
 end
