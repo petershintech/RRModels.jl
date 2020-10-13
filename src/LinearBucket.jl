@@ -14,6 +14,15 @@ function LinearBucket()
     LinearBucket(0.1, 0.0)
 end
 
+function Base.setproperty!(obj::LinearBucket, field::Symbol, value)
+    if field == :K
+        0.0 <= value <= 1.0 || throw(DomainError(value, "K parameter should have a value between 0 and 1"))
+    elseif field == :S
+        value >= 0.0 || throw(DomainError(value, "S initial storage should have a non-negative value"))
+    end
+    setfield!(obj, field, value)
+end
+
 function simulate(model::LinearBucket, P::Array{Float64,1}, PET::Array{Float64,1})
     if size(P) != size(PET)
         throw(DimensionMismath("P and PET have different sizes"))

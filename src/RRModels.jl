@@ -1,5 +1,6 @@
 module RRModels
 
+import Base.setproperty!
 export AbstractRRModel, LinearBucket, simulate
 
 include("AbstractRRModel.jl")
