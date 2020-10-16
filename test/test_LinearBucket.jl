@@ -22,12 +22,8 @@
     @testset "Stash and recover a model for hot start" begin
         model = LinearBucket(0.2, 0.5)
         d = stash(model)
-        @test model.K == d[:K]
-        @test model.S == d[:S]
-
         model2 = LinearBucket(d)
-        @test model.K == model2.K
-        @test model.S == model2.S
+        @test model == model2
     end
 
     @testset "Print a model" begin
