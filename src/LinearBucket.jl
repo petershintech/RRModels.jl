@@ -42,6 +42,11 @@ function Base.setproperty!(obj::LinearBucket, field::Symbol, value)
     setfield!(obj, field, value)
 end
 
+
+function stash(model::LinearBucket)::Dict
+    return Dict(:K=>model.K, :S=>model.S)
+end
+
 function simulate(model::LinearBucket, P::Array{Float64,1}, PET::Array{Float64,1})
     if size(P) != size(PET)
         throw(DimensionMismath("P and PET have different sizes"))
@@ -66,8 +71,4 @@ function simulate(model::LinearBucket, P::Float64, PET::Float64)
         model.S -= Q
     end
     return Q, AET
-end
-
-function stash(model::LinearBucket)::Dict
-    return Dict(:K=>model.K, :S=>model.S)
 end
