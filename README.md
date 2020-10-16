@@ -4,7 +4,7 @@
 |:----------------------------------------------------------------------------------------------- |
  [![][travis-img]][travis-url] [![][codecov-img]][codecov-url]
 
-A collection of rainfall-runoff models.
+A collection of rainfall-runoff models. The package provides Linear Bucket, GR4J and other models.
 
 ## Installation
 
@@ -23,15 +23,25 @@ pkg> add http://github.com/petershintech/RRModels.jl
 And load the package using the command:
 
 ````julia
-julia> using RRModels
+using RRModels
 ````
 
+## How to run a rainfall-runoff simulation?
+````julia
+julia> data = dataset("gr4j_sample")
+julia> model = GR4J(350.0, 0.0, 40.0, 0.5, 0.0, 0.0)
+GR4J Model:
+X1 = 350.0
+X2 = 0.0
+X3 = 40.0
+X4 = 0.5
+Sp = 0.0
+Sr = 0.0
+julia> Q, AET = simulate(model, data.P, data.PET)
+````
 
 ## Disclaimer
 
-This project is not related to or endorsed by the Australian Bureau of Meteorology (BOM).
-
-Please find copyright of materials downloaded from the Hydrologic Reference Stations website at [copyright notice](http://www.bom.gov.au/water/hrs/copyright.shtml).
 
 [travis-img]: https://travis-ci.org/petershintech/RRModels.jl.svg?branch=master
 [travis-url]: https://travis-ci.org/petershintech/RRModels.jl
